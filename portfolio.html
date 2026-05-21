@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tu Portafolio | Desarrollador</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F7F6F3;
+  --surface:#FFFFFF;
+  --text:#1A1916;
+  --muted:#6B6A65;
+  --accent:#1D9E75;
+  --accent-light:#E1F5EE;
+  --border:#E2E0D8;
+  --tag-bg:#F0EFE9;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(247,246,243,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'DM Mono',monospace;font-size:14px;color:var(--accent);letter-spacing:0.02em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);background:var(--accent-light);padding:6px 14px;border-radius:100px;margin-bottom:2rem;letter-spacing:0.04em}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem;color:var(--text)}
+.hero h1 span{font-weight:600;color:var(--accent)}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:8px;font-family:'Sora',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-primary{background:var(--text);color:var(--bg)}
+.btn-primary:hover{background:#3a3835}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--text);background:var(--surface)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.06em;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll::after{content:'';width:1px;height:40px;background:var(--border)}
+
+/* SECTION */
+section{padding:6rem 2rem;max-width:900px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:3rem;color:var(--text)}
+.section-title strong{font-weight:600}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:0.95rem}
+.stats{display:flex;flex-direction:column;gap:1.5rem}
+.stat{padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.stat-num{font-size:2rem;font-weight:600;color:var(--text);font-family:'DM Mono',monospace}
+.stat-label{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .2s}
+.skill-card:hover{border-color:var(--accent)}
+.skill-icon{width:40px;height:40px;background:var(--accent-light);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:18px}
+.skill-name{font-weight:500;font-size:15px;margin-bottom:0.5rem}
+.skill-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.tag{font-family:'DM Mono',monospace;font-size:11px;background:var(--tag-bg);color:var(--muted);padding:4px 10px;border-radius:4px}
+
+/* PROJECTS */
+.projects-grid{display:grid;gap:1.5rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-start:center;transition:all .25s}
+.project-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.project-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:0.75rem}
+.project-name{font-size:1.2rem;font-weight:500;margin-bottom:0.5rem}
+.project-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.project-links{display:flex;gap:0.75rem}
+.project-link{font-size:12px;font-family:'DM Mono',monospace;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light);padding-bottom:2px;transition:border-color .2s}
+.project-link:hover{border-color:var(--accent)}
+.project-arrow{font-size:1.5rem;color:var(--border);align-self:center;transition:color .2s}
+.project-card:hover .project-arrow{color:var(--accent)}
+
+/* CONTACT */
+.contact-box{background:var(--text);color:var(--bg);border-radius:20px;padding:4rem;text-align:center}
+.contact-box h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:300;margin-bottom:1rem;letter-spacing:-0.02em}
+.contact-box h2 strong{font-weight:600;color:var(--accent)}
+.contact-box p{color:rgba(247,246,243,0.6);margin-bottom:2.5rem;font-size:0.95rem}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.contact-btn{padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s;font-family:'Sora',sans-serif}
+.contact-btn-primary{background:var(--accent);color:#fff}
+.contact-btn-primary:hover{background:#1a8f68}
+.contact-btn-ghost{background:transparent;color:var(--bg);border:1px solid rgba(247,246,243,0.2)}
+.contact-btn-ghost:hover{background:rgba(247,246,243,0.1)}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
+
+/* DIVIDER */
+.full-divider{border:none;border-top:1px solid var(--border);max-width:900px;margin:0 auto}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:640px){
+  .about-grid{grid-template-columns:1fr}
+  .project-card{grid-template-columns:1fr}
+  .project-arrow{display:none}
+  nav{padding:1rem}
+  .nav-links{gap:1.2rem}
+  .contact-box{padding:2.5rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">dev.portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative">
+  <div class="hero fade-in">
+    <div>
+      <div class="hero-tag">Disponible para proyectos</div>
+      <h1>Hola, soy<br/><span>Tu Nombre</span><br/>Desarrollador Full Stack</h1>
+      <p>Creo aplicaciones web y móviles con React, Django y tecnologías modernas. Me apasiona construir productos que resuelven problemas reales.</p>
+      <div class="hero-btns">
+        <a href="#proyectos" class="btn btn-primary">Ver mis proyectos</a>
+        <a href="#contacto" class="btn btn-outline">Contáctame</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</div>
+
+<hr class="full-divider"/>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="fade-in">
+  <div class="section-label">Sobre mí</div>
+  <h2 class="section-title">Desarrollador con <strong>pasión por el detalle</strong></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Soy un desarrollador de apps y páginas web con experiencia creando soluciones digitales desde el frontend hasta el backend. Me especializo en construir productos funcionales, bien diseñados y escalables.</p>
+      <p>Trabajo con tecnologías como React, Next.js, Django y Python para desarrollar desde landing pages hasta aplicaciones web complejas.</p>
+      <p>Basado en Bucaramanga, Colombia 🇨🇴 — trabajo con clientes locales e internacionales de forma remota.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">+X</div>
+        <div class="stat-label">Proyectos completados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+X</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+X</div>
+        <div class="stat-label">Clientes satisfechos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider"/>
+
+<!-- HABILIDADES -->
+<section id="habilidades" class="fade-in">
+  <div class="section-label">Habilidades</div>
+  <h2 class="section-title">Mi <strong>stack tecnológico</strong></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">⚛️</div>
+      <div class="skill-name">Frontend</div>
+      <div class="skill-desc">Interfaces modernas, responsivas y accesibles con tecnologías actuales.</div>
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Backend</div>
+      <div class="skill-desc">APIs robustas, bases de datos y lógica de negocio escalable.</div>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Django</span>
+        <span class="tag">REST API</span>
+        <span class="tag">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🚀</div>
+      <div class="skill-name">Deploy & Herramientas</div>
+      <div class="skill-desc">Despliegue, versionamiento y flujo de trabajo profesional.</div>
+      <div class="tags">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">Vercel</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider"/>
+
+<!-- PROYECTOS -->
+<section id="proyectos" class="fade-in">
+  <div class="section-label">Proyectos</div>
+  <h2 class="section-title">Lo que he <strong>construido</strong></h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">01</div>
+        <div class="project-name">Nombre del Proyecto</div>
+        <div class="project-desc">Describe brevemente qué hace este proyecto, qué problema resuelve y qué tecnologías usaste. Máximo 2-3 líneas para que sea fácil de leer.</div>
+        <div class="tags" style="margin-bottom:1rem">
+          <span class="tag">React</span><span class="tag">Django</span><span class="tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">Ver demo →</a>
+          <a href="#" class="project-link">GitHub →</a>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">02</div>
+        <div class="project-name">Nombre del Proyecto</div>
+        <div class="project-desc">Describe brevemente qué hace este proyecto, qué problema resuelve y qué tecnologías usaste. Máximo 2-3 líneas para que sea fácil de leer.</div>
+        <div class="tags" style="margin-bottom:1rem">
+          <span class="tag">Next.js</span><span class="tag">Python</span><span class="tag">REST API</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">Ver demo →</a>
+          <a href="#" class="project-link">GitHub →</a>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">03</div>
+        <div class="project-name">Nombre del Proyecto</div>
+        <div class="project-desc">Describe brevemente qué hace este proyecto, qué problema resuelve y qué tecnologías usaste. Máximo 2-3 líneas para que sea fácil de leer.</div>
+        <div class="tags" style="margin-bottom:1rem">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">Ver demo →</a>
+          <a href="#" class="project-link">GitHub →</a>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="padding:3rem 2rem 6rem;max-width:900px;margin:0 auto" class="fade-in">
+  <div class="contact-box">
+    <h2>¿Tienes un proyecto en mente? <strong>Hablemos</strong></h2>
+    <p>Estoy disponible para proyectos freelance, colaboraciones y oportunidades de trabajo remoto.</p>
+    <div class="contact-links">
+      <a href="mailto:tuemail@gmail.com" class="contact-btn contact-btn-primary">Enviar email</a>
+      <a href="https://linkedin.com/in/tuusuario" class="contact-btn contact-btn-ghost">LinkedIn</a>
+      <a href="https://github.com/tuusuario" class="contact-btn contact-btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Hecho con ❤️ · Tu Nombre · 2025</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
+}, {threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelector('.hero').classList.add('visible');
+</script>
+</body>
+</html>
