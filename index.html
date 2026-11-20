@@ -26,6 +26,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:fl
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:100px;padding:2px;background:var(--surface)}
+.lang-btn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--muted);background:transparent;border:none;border-radius:100px;padding:4px 10px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{color:var(--text)}
+.lang-btn.active{background:var(--accent);color:#fff}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto}
@@ -106,8 +111,11 @@ footer{text-align:center;padding:2rem;font-family:'DM Mono',monospace;font-size:
 .about-grid{grid-template-columns:1fr}
 .project-card{grid-template-columns:1fr}
 .project-arrow{display:none}
-nav{padding:1rem}
-.nav-links{gap:1.2rem}
+nav{padding:.8rem 1rem}
+.nav-logo{display:none}
+.nav-right{gap:1rem;width:100%;justify-content:space-between}
+.nav-links{gap:.9rem}
+.nav-links a{font-size:12px}
 .contact-box{padding:2.5rem 1.5rem}
 }
 </style>
@@ -116,24 +124,30 @@ nav{padding:1rem}
 
 <nav>
 <div class="nav-logo">nicolas.dev</div>
+<div class="nav-right">
 <ul class="nav-links">
-<li><a href="#sobre-mi">Sobre mí</a></li>
-<li><a href="#habilidades">Habilidades</a></li>
-<li><a href="#proyectos">Proyectos</a></li>
-<li><a href="#contacto">Contacto</a></li>
+<li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+<li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+<li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+<li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
 </ul>
+<div class="lang-switch" role="group" aria-label="Idioma / Language">
+<button type="button" class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+<button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+</div>
+</div>
 </nav>
 
 <!-- HERO -->
 <div style="position:relative">
 <div class="hero fade-in">
 <div>
-<div class="hero-tag">Disponible para proyectos</div>
-<h1>Hola, soy<br/><span>Nicolás Naranjo</span><br/>Desarrollador Full Stack</h1>
-<p>Creo aplicaciones web y móviles con React Native, Next.js, Node.js y Supabase. Me apasiona construir productos que resuelven problemas reales.</p>
+<div class="hero-tag" data-i18n="hero.tag">Disponible para proyectos</div>
+<h1 data-i18n-html="hero.title">Hola, soy<br/><span>Nicolás Naranjo</span><br/>Desarrollador Full Stack</h1>
+<p data-i18n="hero.desc">Creo aplicaciones web y móviles con React Native, Next.js, Node.js y Supabase. Me apasiona construir productos que resuelven problemas reales.</p>
 <div class="hero-btns">
-<a href="#proyectos" class="btn btn-primary">Ver mis proyectos</a>
-<a href="#contacto" class="btn btn-outline">Contáctame</a>
+<a href="#proyectos" class="btn btn-primary" data-i18n="hero.cta1">Ver mis proyectos</a>
+<a href="#contacto" class="btn btn-outline" data-i18n="hero.cta2">Contáctame</a>
 </div>
 </div>
 </div>
@@ -144,26 +158,26 @@ nav{padding:1rem}
 
 <!-- SOBRE MÍ -->
 <section id="sobre-mi" class="fade-in">
-<div class="section-label">Sobre mí</div>
-<h2 class="section-title">Desarrollador con <strong>pasión por el detalle</strong></h2>
+<div class="section-label" data-i18n="about.label">Sobre mí</div>
+<h2 class="section-title" data-i18n-html="about.title">Desarrollador con <strong>pasión por el detalle</strong></h2>
 <div class="about-grid">
 <div class="about-text">
-<p>Soy desarrollador Full Stack y fundador de Viarex, una plataforma de servicios basada en geolocalización. Construyo productos completos, desde la app móvil y el frontend web hasta la base de datos, los pagos y las automatizaciones.</p>
-<p>Trabajo con React Native (Expo), Next.js, TypeScript, Node.js y Supabase con PostGIS, además de automatizaciones con n8n e integración de pagos con Wompi.</p>
-<p>Basado en Bucaramanga, Colombia 🇨🇴 — trabajo con clientes locales e internacionales de forma remota.</p>
+<p data-i18n="about.p1">Soy desarrollador Full Stack y fundador de Viarex, una plataforma de servicios basada en geolocalización. Construyo productos completos, desde la app móvil y el frontend web hasta la base de datos, los pagos y las automatizaciones.</p>
+<p data-i18n="about.p2">Trabajo con React Native (Expo), Next.js, TypeScript, Node.js y Supabase con PostGIS, además de automatizaciones con n8n e integración de pagos con Wompi.</p>
+<p data-i18n="about.p3">Basado en Bucaramanga, Colombia 🇨🇴 — trabajo con clientes locales e internacionales de forma remota.</p>
 </div>
 <div class="stats">
 <div class="stat">
 <div class="stat-num">6</div>
-<div class="stat-label">Meses de experiencia en desarrollo</div>
+<div class="stat-label" data-i18n="stat.1">Meses de experiencia en desarrollo</div>
 </div>
 <div class="stat">
 <div class="stat-num">4</div>
-<div class="stat-label">Proyectos completados</div>
+<div class="stat-label" data-i18n="stat.2">Proyectos completados</div>
 </div>
 <div class="stat">
 <div class="stat-num">1</div>
-<div class="stat-label">App mobile en desarrollo activo</div>
+<div class="stat-label" data-i18n="stat.3">App mobile en desarrollo activo</div>
 </div>
 </div>
 </div>
@@ -173,13 +187,13 @@ nav{padding:1rem}
 
 <!-- HABILIDADES -->
 <section id="habilidades" class="fade-in">
-<div class="section-label">Habilidades</div>
-<h2 class="section-title">Mi <strong>stack tecnológico</strong></h2>
+<div class="section-label" data-i18n="skills.label">Habilidades</div>
+<h2 class="section-title" data-i18n-html="skills.title">Mi <strong>stack tecnológico</strong></h2>
 <div class="skills-grid">
 <div class="skill-card">
 <div class="skill-icon">⚛️</div>
-<div class="skill-name">Frontend & Móvil</div>
-<div class="skill-desc">Apps móviles e interfaces web modernas, responsivas y accesibles.</div>
+<div class="skill-name" data-i18n="skills.1.name">Frontend & Móvil</div>
+<div class="skill-desc" data-i18n="skills.1.desc">Apps móviles e interfaces web modernas, responsivas y accesibles.</div>
 <div class="tags">
 <span class="tag">React Native</span>
 <span class="tag">Expo</span>
@@ -190,8 +204,8 @@ nav{padding:1rem}
 </div>
 <div class="skill-card">
 <div class="skill-icon">🗄️</div>
-<div class="skill-name">Backend & Datos</div>
-<div class="skill-desc">APIs, bases de datos geoespaciales y lógica de negocio escalable.</div>
+<div class="skill-name" data-i18n="skills.2.name">Backend & Datos</div>
+<div class="skill-desc" data-i18n="skills.2.desc">APIs, bases de datos geoespaciales y lógica de negocio escalable.</div>
 <div class="tags">
 <span class="tag">Node.js</span>
 <span class="tag">Supabase</span>
@@ -203,8 +217,8 @@ nav{padding:1rem}
 </div>
 <div class="skill-card">
 <div class="skill-icon">🚀</div>
-<div class="skill-name">Automatización & Herramientas</div>
-<div class="skill-desc">Automatizaciones, pagos, despliegue y flujo de trabajo profesional.</div>
+<div class="skill-name" data-i18n="skills.3.name">Automatización & Herramientas</div>
+<div class="skill-desc" data-i18n="skills.3.desc">Automatizaciones, pagos, despliegue y flujo de trabajo profesional.</div>
 <div class="tags">
 <span class="tag">n8n</span>
 <span class="tag">Wompi</span>
@@ -221,20 +235,20 @@ nav{padding:1rem}
 
 <!-- PROYECTOS -->
 <section id="proyectos" class="fade-in">
-<div class="section-label">Proyectos</div>
-<h2 class="section-title">Lo que he <strong>construido</strong></h2>
+<div class="section-label" data-i18n="projects.label">Proyectos</div>
+<h2 class="section-title" data-i18n-html="projects.title">Lo que he <strong>construido</strong></h2>
 <div class="projects-grid">
 
 <div class="project-card">
 <div>
 <div class="project-num">01</div>
 <div class="project-name">Viarex</div>
-<div class="project-desc">Plataforma de servicios basada en geolocalización que conecta usuarios con negocios y proveedores cercanos. Incluye mapa interactivo, roles (usuario, VIP y negocio) y pagos integrados.</div>
+<div class="project-desc" data-i18n="projects.1.desc">Plataforma de servicios basada en geolocalización que conecta usuarios con negocios y proveedores cercanos. Incluye mapa interactivo, roles (usuario, VIP y negocio) y pagos integrados.</div>
 <div class="tags" style="margin-bottom:1rem">
 <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">PostGIS</span><span class="tag">Wompi</span>
 </div>
 <div class="project-links">
-<a href="https://github.com/isnowyy" target="_blank" rel="noopener" class="project-link">Ver en GitHub →</a>
+<a href="https://github.com/isnowyy" target="_blank" rel="noopener" class="project-link" data-i18n="projects.1.link">Ver en GitHub →</a>
 </div>
 </div>
 <div class="project-arrow">→</div>
@@ -243,8 +257,8 @@ nav{padding:1rem}
 <div class="project-card">
 <div>
 <div class="project-num">02</div>
-<div class="project-name">Medición de terrenos con dron</div>
-<div class="project-desc">Sistema para medir terrenos a partir de vuelos con dron: captura de imágenes, procesamiento fotogramétrico y visualización de áreas sobre un mapa web.</div>
+<div class="project-name" data-i18n="projects.2.name">Medición de terrenos con dron</div>
+<div class="project-desc" data-i18n="projects.2.desc">Sistema para medir terrenos a partir de vuelos con dron: captura de imágenes, procesamiento fotogramétrico y visualización de áreas sobre un mapa web.</div>
 <div class="tags" style="margin-bottom:1rem">
 <span class="tag">DJI MSDK</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">Mapbox GL</span><span class="tag">OpenDroneMap</span><span class="tag">PostGIS</span>
 </div>
@@ -256,7 +270,7 @@ nav{padding:1rem}
 <div>
 <div class="project-num">03</div>
 <div class="project-name">TutorBot</div>
-<div class="project-desc">Bot de Telegram para gestionar la asignación de tutorías, con flujos automatizados en n8n, registro en Google Sheets y alertas de disponibilidad.</div>
+<div class="project-desc" data-i18n="projects.3.desc">Bot de Telegram para gestionar la asignación de tutorías, con flujos automatizados en n8n, registro en Google Sheets y alertas de disponibilidad.</div>
 <div class="tags" style="margin-bottom:1rem">
 <span class="tag">n8n</span><span class="tag">Telegram</span><span class="tag">Google Sheets</span>
 </div>
@@ -267,13 +281,13 @@ nav{padding:1rem}
 <div class="project-card">
 <div>
 <div class="project-num">04</div>
-<div class="project-name">Portafolio Personal</div>
-<div class="project-desc">Este mismo portafolio, diseñado y desarrollado desde cero con HTML, CSS y JavaScript. Desplegado en Vercel con diseño minimalista y animaciones al hacer scroll.</div>
+<div class="project-name" data-i18n="projects.4.name">Portafolio Personal</div>
+<div class="project-desc" data-i18n="projects.4.desc">Este mismo portafolio, diseñado y desarrollado desde cero con HTML, CSS y JavaScript. Desplegado en Vercel con diseño minimalista y animaciones al hacer scroll.</div>
 <div class="tags" style="margin-bottom:1rem">
 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Vercel</span>
 </div>
 <div class="project-links">
-<a href="https://github.com/isnowyy/portafolio" target="_blank" rel="noopener" class="project-link">Ver código →</a>
+<a href="https://github.com/isnowyy/portafolio" target="_blank" rel="noopener" class="project-link" data-i18n="projects.4.link">Ver código →</a>
 </div>
 </div>
 <div class="project-arrow">→</div>
@@ -285,10 +299,10 @@ nav{padding:1rem}
 <!-- CONTACTO -->
 <section id="contacto" style="padding:3rem 2rem 6rem;max-width:900px;margin:0 auto" class="fade-in">
 <div class="contact-box">
-<h2>¿Tienes un proyecto en mente? <strong>Hablemos</strong></h2>
-<p>Estoy disponible para proyectos freelance, colaboraciones y oportunidades de trabajo remoto.</p>
+<h2 data-i18n-html="contact.title">¿Tienes un proyecto en mente? <strong>Hablemos</strong></h2>
+<p data-i18n="contact.desc">Estoy disponible para proyectos freelance, colaboraciones y oportunidades de trabajo remoto.</p>
 <div class="contact-links">
-<a href="mailto:naranjobarriosn@gmail.com" class="contact-btn contact-btn-primary">Enviar email</a>
+<a href="mailto:naranjobarriosn@gmail.com" class="contact-btn contact-btn-primary" data-i18n="contact.email">Enviar email</a>
 <a href="https://www.linkedin.com/in/nicolas-naranjo-0b8720257/" target="_blank" rel="noopener" class="contact-btn contact-btn-ghost">LinkedIn</a>
 <a href="https://github.com/isnowyy" target="_blank" rel="noopener" class="contact-btn contact-btn-ghost">GitHub</a>
 </div>
@@ -305,6 +319,71 @@ entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
 }, {threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 document.querySelector('.hero').classList.add('visible');
+
+const I18N = {
+es: {
+'meta.title':'Nicolás Naranjo | Desarrollador Full Stack',
+'nav.about':'Sobre mí','nav.skills':'Habilidades','nav.projects':'Proyectos','nav.contact':'Contacto'
+},
+en: {
+'meta.title':'Nicolás Naranjo | Full Stack Developer',
+'nav.about':'About','nav.skills':'Skills','nav.projects':'Projects','nav.contact':'Contact',
+'hero.tag':'Available for projects',
+'hero.title':'Hi, I\'m<br/><span>Nicolás Naranjo</span><br/>Full Stack Developer',
+'hero.desc':'I build web and mobile apps with React Native, Next.js, Node.js and Supabase. I\'m passionate about building products that solve real problems.',
+'hero.cta1':'View my projects','hero.cta2':'Get in touch',
+'about.label':'About me',
+'about.title':'Developer with a <strong>passion for detail</strong>',
+'about.p1':'I\'m a Full Stack developer and founder of Viarex, a geolocation-based services platform. I build complete products, from the mobile app and web frontend to the database, payments and automations.',
+'about.p2':'I work with React Native (Expo), Next.js, TypeScript, Node.js and Supabase with PostGIS, plus automations with n8n and payment integration with Wompi.',
+'about.p3':'Based in Bucaramanga, Colombia 🇨🇴 — I work remotely with local and international clients.',
+'stat.1':'Months of development experience','stat.2':'Completed projects','stat.3':'Mobile app in active development',
+'skills.label':'Skills',
+'skills.title':'My <strong>tech stack</strong>',
+'skills.1.name':'Frontend & Mobile','skills.1.desc':'Modern, responsive and accessible mobile apps and web interfaces.',
+'skills.2.name':'Backend & Data','skills.2.desc':'APIs, geospatial databases and scalable business logic.',
+'skills.3.name':'Automation & Tools','skills.3.desc':'Automation, payments, deployment and a professional workflow.',
+'projects.label':'Projects',
+'projects.title':'What I\'ve <strong>built</strong>',
+'projects.1.desc':'Geolocation-based services platform that connects users with nearby businesses and providers. Includes an interactive map, roles (user, VIP and business) and integrated payments.',
+'projects.1.link':'View on GitHub →',
+'projects.2.name':'Land surveying with drones',
+'projects.2.desc':'System to measure land from drone flights: image capture, photogrammetric processing and area visualization on a web map.',
+'projects.3.desc':'Telegram bot to manage tutoring assignments, with automated n8n workflows, Google Sheets logging and availability alerts.',
+'projects.4.name':'Personal Portfolio',
+'projects.4.desc':'This very portfolio, designed and built from scratch with HTML, CSS and JavaScript. Deployed on Vercel with a minimalist design and scroll animations.',
+'projects.4.link':'View code →',
+'contact.title':'Have a project in mind? <strong>Let\'s talk</strong>',
+'contact.desc':'I\'m available for freelance projects, collaborations and remote work opportunities.',
+'contact.email':'Send email'
+}
+};
+
+document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el => {
+const html = el.hasAttribute('data-i18n-html');
+I18N.es[el.getAttribute(html ? 'data-i18n-html' : 'data-i18n')] ??= html ? el.innerHTML : el.textContent;
+});
+
+function setLang(lang, save = true) {
+if (!I18N[lang]) lang = 'es';
+const dict = I18N[lang];
+document.documentElement.lang = lang;
+document.title = dict['meta.title'];
+document.querySelectorAll('[data-i18n]').forEach(el => { const t = dict[el.dataset.i18n]; if (t !== undefined) el.textContent = t; });
+document.querySelectorAll('[data-i18n-html]').forEach(el => { const t = dict[el.dataset.i18nHtml]; if (t !== undefined) el.innerHTML = t; });
+document.querySelectorAll('.lang-btn').forEach(b => {
+const on = b.dataset.lang === lang;
+b.classList.toggle('active', on);
+b.setAttribute('aria-pressed', on);
+});
+if (save) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+}
+
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+let initialLang = 'es';
+try { initialLang = localStorage.getItem('lang') || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) {}
+setLang(initialLang, false);
 </script>
 </body>
 </html>
