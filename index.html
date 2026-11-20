@@ -4,361 +4,395 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nicolás Naranjo | Desarrollador Full Stack</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta name="description" content="Nicolás Naranjo, desarrollador full stack en Bucaramanga, Colombia. Apps móviles y web con React Native, Next.js, Node.js y Supabase."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet"/>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
---bg:#F7F6F3;
---surface:#FFFFFF;
---text:#1A1916;
---muted:#6B6A65;
---accent:#1D9E75;
---accent-light:#E1F5EE;
---border:#E2E0D8;
---tag-bg:#F0EFE9;
+--paper:#EFF0EB;
+--paper-deep:#E3E5DD;
+--ink:#151B33;
+--ink-soft:#4B5068;
+--cobalt:#2A44D4;
+--contour:#B9BFCE;
+--display:'Archivo',system-ui,sans-serif;
+--serif:'Newsreader',Georgia,serif;
+--gutter:clamp(1.25rem,4vw,3.5rem);
+--max:1280px;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{overflow-x:clip;font-family:var(--serif);font-size:1.1875rem;line-height:1.6;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(247,246,243,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'DM Mono',monospace;font-size:14px;color:var(--accent);letter-spacing:0.02em}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:color .2s}
-.nav-links a:hover{color:var(--text)}
+.nav{position:sticky;top:0;z-index:50;background:rgba(239,240,235,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--paper-deep)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:4rem}
+.nav-name{font-family:var(--display);font-weight:700;font-variation-settings:'wdth' 112;font-size:1rem;text-decoration:none;letter-spacing:-.01em}
 .nav-right{display:flex;align-items:center;gap:2rem}
-.lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:100px;padding:2px;background:var(--surface)}
-.lang-btn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--muted);background:transparent;border:none;border-radius:100px;padding:4px 10px;cursor:pointer;transition:all .2s}
-.lang-btn:hover{color:var(--text)}
-.lang-btn.active{background:var(--accent);color:#fff}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{font-family:var(--display);font-size:.875rem;font-weight:500;text-decoration:none;color:var(--ink-soft);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1.5px solid var(--ink);border-radius:4px;overflow:hidden;flex-shrink:0}
+.lang button{font-family:var(--display);font-size:.75rem;font-weight:700;font-variation-settings:'wdth' 110;padding:.3rem .6rem;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:900px;margin:0 auto}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);background:var(--accent-light);padding:6px 14px;border-radius:100px;margin-bottom:2rem;letter-spacing:0.04em}
-.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block}
-.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem;color:var(--text)}
-.hero h1 span{font-weight:600;color:var(--accent)}
-.hero p{font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:2.5rem}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{padding:12px 28px;border-radius:8px;font-family:'Sora',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
-.btn-primary{background:var(--text);color:var(--bg)}
-.btn-primary:hover{background:#3a3835}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
-.btn-outline:hover{border-color:var(--text);background:var(--surface)}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.06em;display:flex;flex-direction:column;align-items:center;gap:8px}
-.hero-scroll::after{content:'';width:1px;height:40px;background:var(--border)}
+.hero{position:relative;overflow:hidden;padding:clamp(3rem,9vh,6rem) 0 clamp(3rem,8vh,5rem);border-bottom:3px solid var(--ink)}
+.contours{position:absolute;right:-12%;top:50%;transform:translateY(-50%);width:min(980px,95vw);height:auto;pointer-events:none;z-index:0}
+.contours path{fill:none;stroke:var(--contour);stroke-width:1.1;vector-effect:non-scaling-stroke}
+.contours path.index{stroke:var(--ink-soft);stroke-opacity:.45;stroke-width:1.4}
+.contours .pin{fill:var(--cobalt)}
+.contours .pin-ring{fill:none;stroke:var(--cobalt);stroke-width:1.5}
+.hero .wrap{position:relative;z-index:1}
+.hero-name{font-family:var(--display);font-weight:850;font-variation-settings:'wdth' 125;font-size:clamp(3.4rem,13.2vw,12.5rem);line-height:.86;letter-spacing:-.035em;margin-bottom:clamp(1.75rem,4vw,3rem)}
+.hero-name span{display:block}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2rem 4rem;align-items:end}
+.hero-lede{font-size:clamp(1.3rem,2.1vw,1.65rem);line-height:1.45;max-width:32ch;font-weight:400}
+.hero-side{display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start}
+.status{font-family:var(--display);font-size:.9rem;font-weight:500;display:inline-flex;align-items:center;gap:.55rem}
+.status::before{content:'';width:.55rem;height:.55rem;border-radius:50%;background:var(--cobalt);box-shadow:0 0 0 4px rgba(42,68,212,.15)}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{font-family:var(--display);font-size:.95rem;font-weight:600;font-variation-settings:'wdth' 105;text-decoration:none;padding:.85rem 1.4rem;border-radius:4px;border:1.5px solid var(--ink);transition:background .15s,color .15s}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--cobalt);border-color:var(--cobalt)}
+.btn-line{background:var(--paper)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.coords{font-family:var(--display);font-size:.85rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
 
-/* SECTION */
-section{padding:6rem 2rem;max-width:900px;margin:0 auto}
-.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
-.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:3rem;color:var(--text)}
-.section-title strong{font-weight:600}
+.sec{padding:clamp(4rem,10vw,7.5rem) 0;border-bottom:1px solid var(--contour)}
+.sec-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:2rem clamp(2rem,5vw,5rem)}
+.sec-title{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 118;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:.95;letter-spacing:-.03em;align-self:start;position:sticky;top:6rem}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:0.95rem}
-.stats{display:flex;flex-direction:column;gap:1.5rem}
-.stat{padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px}
-.stat-num{font-size:2rem;font-weight:600;color:var(--text);font-family:'DM Mono',monospace}
-.stat-label{font-size:13px;color:var(--muted);margin-top:4px}
+.about p{max-width:60ch;margin-bottom:1.1rem}
+.about p:first-child{font-size:clamp(1.35rem,2.2vw,1.7rem);line-height:1.4;margin-bottom:1.6rem}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:3px solid var(--ink)}
+.facts dt{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 125;font-size:clamp(2rem,3.4vw,2.8rem);line-height:1;letter-spacing:-.02em}
+.facts dd{font-size:1rem;color:var(--ink-soft);margin-top:.4rem;line-height:1.4}
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
-.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .2s}
-.skill-card:hover{border-color:var(--accent)}
-.skill-icon{width:40px;height:40px;background:var(--accent-light);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:18px}
-.skill-name{font-weight:500;font-size:15px;margin-bottom:0.5rem}
-.skill-desc{font-size:13px;color:var(--muted);line-height:1.6}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
-.tag{font-family:'DM Mono',monospace;font-size:11px;background:var(--tag-bg);color:var(--muted);padding:4px 10px;border-radius:4px}
+.projects{list-style:none}
+.project{padding:2.25rem 0;border-top:1px solid var(--contour)}
+.project:first-child{border-top:3px solid var(--ink)}
+.project-head{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.9rem}
+.project-name{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 112;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.05;letter-spacing:-.025em}
+.project.featured .project-name{font-size:clamp(2.6rem,6vw,4.75rem);font-variation-settings:'wdth' 125;line-height:.95}
+.project-kind{font-family:var(--display);font-size:.875rem;font-weight:500;color:var(--cobalt)}
+.project-desc{max-width:58ch;margin-bottom:.9rem}
+.project-stack{font-size:1rem;font-style:italic;color:var(--ink-soft);margin-bottom:.9rem}
+.project-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.project-links a{font-family:var(--display);font-size:.9rem;font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:var(--cobalt)}
+.project-links a:hover{color:var(--cobalt)}
 
-/* PROJECTS */
-.projects-grid{display:grid;gap:1.5rem}
-.project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;transition:all .25s}
-.project-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.project-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:0.75rem}
-.project-name{font-size:1.2rem;font-weight:500;margin-bottom:0.5rem}
-.project-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1rem}
-.project-links{display:flex;gap:0.75rem}
-.project-link{font-size:12px;font-family:'DM Mono',monospace;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light);padding-bottom:2px;transition:border-color .2s}
-.project-link:hover{border-color:var(--accent)}
-.project-arrow{font-size:1.5rem;color:var(--border);align-self:center;transition:color .2s}
-.project-card:hover .project-arrow{color:var(--accent)}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}
+.skill h3,.track h3{font-family:var(--display);font-weight:700;font-variation-settings:'wdth' 110;font-size:1.15rem;padding-bottom:.6rem;border-bottom:3px solid var(--ink);line-height:1.2}
+.skill h3{margin-bottom:.8rem}
+.skill p{font-size:1rem;color:var(--ink-soft);margin-bottom:.9rem;line-height:1.5}
+.skill ul{list-style:none}
+.skill li{font-size:1.15rem;padding:.25rem 0;border-bottom:1px solid var(--paper-deep)}
 
-/* CONTACT */
-.contact-box{background:var(--text);color:var(--bg);border-radius:20px;padding:4rem;text-align:center}
-.contact-box h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:300;margin-bottom:1rem;letter-spacing:-0.02em}
-.contact-box h2 strong{font-weight:600;color:var(--accent)}
-.contact-box p{color:rgba(247,246,243,0.6);margin-bottom:2.5rem;font-size:0.95rem}
-.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
-.contact-btn{padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s;font-family:'Sora',sans-serif}
-.contact-btn-primary{background:var(--accent);color:#fff}
-.contact-btn-primary:hover{background:#1a8f68}
-.contact-btn-ghost{background:transparent;color:var(--bg);border:1px solid rgba(247,246,243,0.2)}
-.contact-btn-ghost:hover{background:rgba(247,246,243,0.1)}
+.tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem}
+.track ol{list-style:none}
+.track li{position:relative;padding:1.35rem 0 1.35rem 1.6rem;border-bottom:1px solid var(--contour)}
+.track li::before{content:'';position:absolute;left:0;top:1.75rem;width:.6rem;height:.6rem;border:2px solid var(--cobalt);border-radius:50%}
+.track li.now::before{background:var(--cobalt)}
+.when{font-family:var(--display);font-size:.85rem;font-weight:500;color:var(--cobalt);font-variant-numeric:tabular-nums}
+.what{font-family:var(--display);font-weight:700;font-variation-settings:'wdth' 105;font-size:1.2rem;line-height:1.25;margin:.2rem 0 .15rem}
+.where{font-style:italic;color:var(--ink-soft);font-size:1.05rem}
+.track li p{font-size:1rem;margin-top:.5rem;max-width:48ch}
 
-/* FOOTER */
-footer{text-align:center;padding:2rem;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
+.contact{background:var(--ink);color:var(--paper);padding:clamp(4.5rem,11vw,8rem) 0 3rem}
+.contact-q{font-size:clamp(1.3rem,2.2vw,1.65rem);max-width:36ch;line-height:1.4;margin-bottom:2rem;color:#C9CDE0}
+.contact-mail{display:inline-block;font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 112;font-size:clamp(1.3rem,5.4vw,4.4rem);line-height:1.05;letter-spacing:-.03em;text-decoration:none;color:var(--paper);border-bottom:4px solid var(--cobalt);padding-bottom:.12em;max-width:100%;transition:color .15s}
+.contact-mail:hover{color:#AFBBFF}
+.contact .btns{margin-top:2.5rem}
+.contact .btn{border-color:rgba(239,240,235,.4);color:var(--paper)}
+.contact .btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.contact :focus-visible{outline-color:#AFBBFF}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:clamp(4rem,9vw,6rem);padding-top:1.5rem;border-top:1px solid rgba(239,240,235,.2);font-family:var(--display);font-size:.85rem;color:#9AA0BA}
 
-/* DIVIDER */
-.full-divider{border:none;border-top:1px solid var(--border);max-width:900px;margin:0 auto}
+@media (prefers-reduced-motion:no-preference){
+.contours.draw path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 2.4s cubic-bezier(.4,0,.2,1) forwards;animation-delay:var(--d)}
+.contours.draw .pin,.contours.draw .pin-ring{opacity:0;animation:pin .5s ease-out 1.9s forwards}
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pin{to{opacity:1}}
 
-/* ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-
-@media(max-width:640px){
-.about-grid{grid-template-columns:1fr}
-.project-card{grid-template-columns:1fr}
-.project-arrow{display:none}
-nav{padding:.8rem 1rem}
-.nav-logo{display:none}
-.nav-right{gap:1rem;width:100%;justify-content:space-between}
-.nav-links{gap:.9rem}
-.nav-links a{font-size:12px}
-.contact-box{padding:2.5rem 1.5rem}
+@media (max-width:900px){
+.hero-grid,.sec-grid{grid-template-columns:1fr}
+.sec-title{position:static}
+.skills,.tracks{grid-template-columns:1fr}
+.contours{right:-35%;top:30%;width:130vw;opacity:.7}
+}
+@media (max-width:640px){
+body{font-size:1.0625rem}
+.nav-name{display:none}
+.nav-right{width:100%;justify-content:space-between;gap:1rem}
+.nav-links{gap:.75rem}
+.nav-links a{font-size:.78rem;white-space:nowrap}
+.hero-name{font-size:16.5vw}
+.contact-mail{font-size:clamp(1.6rem,9vw,2.6rem)}
+.facts{grid-template-columns:1fr;gap:1.1rem}
+.facts div{display:flex;align-items:baseline;gap:1rem}
+.facts dd{margin-top:0}
+}
+@media (max-width:360px){
+.nav-links{gap:.55rem}
+.nav-links a{font-size:.7rem}
+.lang button{padding:.3rem .45rem}
 }
 </style>
 </head>
 <body>
 
-<nav>
-<div class="nav-logo">nicolas.dev</div>
+<header class="nav">
+<div class="wrap">
+<a href="#top" class="nav-name">Nicolás Naranjo</a>
 <div class="nav-right">
+<nav aria-label="Secciones">
 <ul class="nav-links">
 <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
-<li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
 <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+<li><a href="#trayectoria" data-i18n="nav.path">Trayectoria</a></li>
 <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
 </ul>
-<div class="lang-switch" role="group" aria-label="Idioma / Language">
-<button type="button" class="lang-btn" data-lang="es" aria-label="Español">ES</button>
-<button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
-</div>
-</div>
 </nav>
+<div class="lang" role="group" aria-label="Idioma / Language">
+<button type="button" data-lang="es" aria-label="Español">ES</button>
+<button type="button" data-lang="en" aria-label="English">EN</button>
+</div>
+</div>
+</div>
+</header>
 
-<!-- HERO -->
-<div style="position:relative">
-<div class="hero fade-in">
-<div>
-<div class="hero-tag" data-i18n="hero.tag">Disponible para proyectos</div>
-<h1 data-i18n-html="hero.title">Hola, soy<br/><span>Nicolás Naranjo</span><br/>Desarrollador Full Stack</h1>
-<p data-i18n="hero.desc">Creo aplicaciones web y móviles con React Native, Next.js, Node.js y Supabase. Me apasiona construir productos que resuelven problemas reales.</p>
-<div class="hero-btns">
-<a href="#proyectos" class="btn btn-primary" data-i18n="hero.cta1">Ver mis proyectos</a>
-<a href="#contacto" class="btn btn-outline" data-i18n="hero.cta2">Contáctame</a>
-</div>
-</div>
-</div>
-<div class="hero-scroll">scroll</div>
-</div>
+<main id="top">
 
-<hr class="full-divider"/>
-
-<!-- SOBRE MÍ -->
-<section id="sobre-mi" class="fade-in">
-<div class="section-label" data-i18n="about.label">Sobre mí</div>
-<h2 class="section-title" data-i18n-html="about.title">Desarrollador con <strong>pasión por el detalle</strong></h2>
-<div class="about-grid">
-<div class="about-text">
-<p data-i18n="about.p1">Soy desarrollador Full Stack y fundador de Wayrex, una plataforma de servicios basada en geolocalización. Construyo productos completos, desde la app móvil y el frontend web hasta la base de datos, los pagos y las automatizaciones.</p>
-<p data-i18n="about.p2">Trabajo con React Native (Expo), Next.js, TypeScript, Node.js y Supabase con PostGIS, además de automatizaciones con n8n e integración de pagos con Wompi.</p>
-<p data-i18n="about.p3">Basado en Bucaramanga, Colombia 🇨🇴 — trabajo con clientes locales e internacionales de forma remota.</p>
+<section class="hero">
+<svg class="contours" viewBox="0 0 1000 800" aria-hidden="true"></svg>
+<div class="wrap">
+<h1 class="hero-name"><span>Nicolás</span><span>Naranjo</span></h1>
+<div class="hero-grid">
+<p class="hero-lede" data-i18n-html="hero.lede">Desarrollador full stack. Construyo apps móviles y web con mapas, pagos y datos geoespaciales, desde la base de datos hasta la tienda de apps.</p>
+<div class="hero-side">
+<span class="status" data-i18n="hero.status">Disponible para proyectos freelance</span>
+<div class="btns">
+<a href="#proyectos" class="btn btn-solid" data-i18n="hero.cta1">Ver proyectos</a>
+<a href="#contacto" class="btn btn-line" data-i18n="hero.cta2">Escribirme</a>
 </div>
-<div class="stats">
-<div class="stat">
-<div class="stat-num">1+</div>
-<div class="stat-label" data-i18n="stat.1">Años de experiencia en desarrollo</div>
-</div>
-<div class="stat">
-<div class="stat-num">4</div>
-<div class="stat-label" data-i18n="stat.2">Proyectos completados</div>
-</div>
-<div class="stat">
-<div class="stat-num">1</div>
-<div class="stat-label" data-i18n="stat.3">App mobile en desarrollo activo</div>
+<span class="coords">Bucaramanga, Colombia &nbsp; 7.12° N, 73.12° O</span>
 </div>
 </div>
 </div>
 </section>
 
-<hr class="full-divider"/>
-
-<!-- HABILIDADES -->
-<section id="habilidades" class="fade-in">
-<div class="section-label" data-i18n="skills.label">Habilidades</div>
-<h2 class="section-title" data-i18n-html="skills.title">Mi <strong>stack tecnológico</strong></h2>
-<div class="skills-grid">
-<div class="skill-card">
-<div class="skill-icon">⚛️</div>
-<div class="skill-name" data-i18n="skills.1.name">Frontend & Móvil</div>
-<div class="skill-desc" data-i18n="skills.1.desc">Apps móviles e interfaces web modernas, responsivas y accesibles.</div>
-<div class="tags">
-<span class="tag">React Native</span>
-<span class="tag">Expo</span>
-<span class="tag">React</span>
-<span class="tag">Next.js</span>
-<span class="tag">TypeScript</span>
-</div>
-</div>
-<div class="skill-card">
-<div class="skill-icon">🗄️</div>
-<div class="skill-name" data-i18n="skills.2.name">Backend & Datos</div>
-<div class="skill-desc" data-i18n="skills.2.desc">APIs, bases de datos geoespaciales y lógica de negocio escalable.</div>
-<div class="tags">
-<span class="tag">Node.js</span>
-<span class="tag">Supabase</span>
-<span class="tag">PostgreSQL</span>
-<span class="tag">PostGIS</span>
-<span class="tag">Python</span>
-<span class="tag">FastAPI</span>
-</div>
-</div>
-<div class="skill-card">
-<div class="skill-icon">🚀</div>
-<div class="skill-name" data-i18n="skills.3.name">Automatización & Herramientas</div>
-<div class="skill-desc" data-i18n="skills.3.desc">Automatizaciones, pagos, despliegue y flujo de trabajo profesional.</div>
-<div class="tags">
-<span class="tag">n8n</span>
-<span class="tag">Wompi</span>
-<span class="tag">Git</span>
-<span class="tag">GitHub</span>
-<span class="tag">Vercel</span>
-<span class="tag">Figma</span>
-</div>
+<section class="sec" id="sobre-mi">
+<div class="wrap sec-grid">
+<h2 class="sec-title" data-i18n="about.title">Sobre mí</h2>
+<div class="about">
+<p data-i18n="about.p1">Soy fundador de Wayrex, una plataforma que conecta a las personas con negocios y proveedores de servicios cercanos según su ubicación.</p>
+<p data-i18n="about.p2">Me encargo del producto completo: la app móvil, el frontend web, la base de datos, los pagos y las automatizaciones. Trabajo con React Native (Expo), Next.js, TypeScript, Node.js y Supabase con PostGIS, automatizo procesos con n8n e integro pagos con Wompi.</p>
+<p data-i18n="about.p3">Vivo en Bucaramanga y trabajo de forma remota con clientes de Colombia y de otros países.</p>
+<dl class="facts">
+<div><dt>1+</dt><dd data-i18n="fact.1">años desarrollando software</dd></div>
+<div><dt>4</dt><dd data-i18n="fact.2">proyectos completados</dd></div>
+<div><dt>1</dt><dd data-i18n="fact.3">app móvil en desarrollo activo</dd></div>
+</dl>
 </div>
 </div>
 </section>
 
-<hr class="full-divider"/>
-
-<!-- PROYECTOS -->
-<section id="proyectos" class="fade-in">
-<div class="section-label" data-i18n="projects.label">Proyectos</div>
-<h2 class="section-title" data-i18n-html="projects.title">Lo que he <strong>construido</strong></h2>
-<div class="projects-grid">
-
-<div class="project-card">
-<div>
-<div class="project-num">01</div>
-<div class="project-name">Wayrex</div>
-<div class="project-desc" data-i18n="projects.1.desc">Plataforma de servicios basada en geolocalización que conecta usuarios con negocios y proveedores cercanos. Incluye mapa interactivo, roles (usuario, VIP y negocio) y pagos integrados.</div>
-<div class="tags" style="margin-bottom:1rem">
-<span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">PostGIS</span><span class="tag">Wompi</span>
+<section class="sec" id="proyectos">
+<div class="wrap sec-grid">
+<h2 class="sec-title" data-i18n="projects.title">Proyectos</h2>
+<ul class="projects">
+<li class="project featured">
+<div class="project-head">
+<h3 class="project-name">Wayrex</h3>
+<span class="project-kind" data-i18n="p1.kind">App móvil y web</span>
 </div>
+<p class="project-desc" data-i18n="p1.desc">Plataforma de servicios basada en geolocalización que conecta usuarios con negocios y proveedores cercanos. Tiene mapa interactivo, tres roles (usuario, VIP y negocio) y pagos integrados.</p>
+<p class="project-stack">React Native, Expo, Next.js, Supabase, PostGIS, Wompi</p>
+<div class="project-links"><a href="https://github.com/isnowyy" target="_blank" rel="noopener" data-i18n="link.github">Ver en GitHub</a></div>
+</li>
+<li class="project">
+<div class="project-head">
+<h3 class="project-name" data-i18n="p2.name">Medición de terrenos con dron</h3>
+<span class="project-kind" data-i18n="p2.kind">Sistema web y dron</span>
+</div>
+<p class="project-desc" data-i18n="p2.desc">Mide terrenos a partir de vuelos con dron: captura las imágenes, las procesa con fotogrametría y muestra las áreas sobre un mapa web.</p>
+<p class="project-stack">DJI MSDK, FastAPI, Next.js, Mapbox GL, OpenDroneMap, PostGIS</p>
+</li>
+<li class="project">
+<div class="project-head">
+<h3 class="project-name">TutorBot</h3>
+<span class="project-kind" data-i18n="p3.kind">Bot de Telegram</span>
+</div>
+<p class="project-desc" data-i18n="p3.desc">Gestiona la asignación de tutorías con flujos automatizados en n8n, registra cada solicitud en Google Sheets y avisa cuando hay disponibilidad.</p>
+<p class="project-stack">n8n, Telegram, Google Sheets</p>
+</li>
+<li class="project">
+<div class="project-head">
+<h3 class="project-name" data-i18n="p4.name">Clasificador de tostado de café</h3>
+<span class="project-kind" data-i18n="p4.kind">Visión por computador</span>
+</div>
+<p class="project-desc" data-i18n="p4.desc">Identifica el nivel de tostado del grano de café en tiempo real con la cámara. El modelo se entrenó con Teachable Machine y corre 100% en el navegador con TensorFlow.js.</p>
+<p class="project-stack">Teachable Machine, TensorFlow.js, JavaScript</p>
 <div class="project-links">
-<a href="https://github.com/isnowyy" target="_blank" rel="noopener" class="project-link" data-i18n="projects.1.link">Ver en GitHub →</a>
+<a href="https://isnowyy.github.io/clasificador-tostado-cafe/" target="_blank" rel="noopener" data-i18n="link.demo">Probar la demo</a>
+<a href="https://github.com/isnowyy/clasificador-tostado-cafe" target="_blank" rel="noopener" data-i18n="link.code">Ver código</a>
 </div>
-</div>
-<div class="project-arrow">→</div>
-</div>
-
-<div class="project-card">
-<div>
-<div class="project-num">02</div>
-<div class="project-name" data-i18n="projects.2.name">Medición de terrenos con dron</div>
-<div class="project-desc" data-i18n="projects.2.desc">Sistema para medir terrenos a partir de vuelos con dron: captura de imágenes, procesamiento fotogramétrico y visualización de áreas sobre un mapa web.</div>
-<div class="tags" style="margin-bottom:1rem">
-<span class="tag">DJI MSDK</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">Mapbox GL</span><span class="tag">OpenDroneMap</span><span class="tag">PostGIS</span>
-</div>
-</div>
-<div class="project-arrow">→</div>
-</div>
-
-<div class="project-card">
-<div>
-<div class="project-num">03</div>
-<div class="project-name">TutorBot</div>
-<div class="project-desc" data-i18n="projects.3.desc">Bot de Telegram para gestionar la asignación de tutorías, con flujos automatizados en n8n, registro en Google Sheets y alertas de disponibilidad.</div>
-<div class="tags" style="margin-bottom:1rem">
-<span class="tag">n8n</span><span class="tag">Telegram</span><span class="tag">Google Sheets</span>
-</div>
-</div>
-<div class="project-arrow">→</div>
-</div>
-
-<div class="project-card">
-<div>
-<div class="project-num">04</div>
-<div class="project-name" data-i18n="projects.5.name">Clasificador de tostado de café</div>
-<div class="project-desc" data-i18n="projects.5.desc">Clasificador de imágenes que identifica el nivel de tostado del grano de café en tiempo real con la webcam. Modelo entrenado con Teachable Machine y ejecutado 100% en el navegador con TensorFlow.js.</div>
-<div class="tags" style="margin-bottom:1rem">
-<span class="tag">Teachable Machine</span><span class="tag">TensorFlow.js</span><span class="tag">JavaScript</span>
-</div>
-<div class="project-links">
-<a href="https://isnowyy.github.io/clasificador-tostado-cafe/" target="_blank" rel="noopener" class="project-link" data-i18n="projects.5.demo">Ver demo →</a>
-<a href="https://github.com/isnowyy/clasificador-tostado-cafe" target="_blank" rel="noopener" class="project-link" data-i18n="projects.5.link">Ver código →</a>
-</div>
-</div>
-<div class="project-arrow">→</div>
-</div>
-
-
+</li>
+</ul>
 </div>
 </section>
 
-<!-- CONTACTO -->
-<section id="contacto" style="padding:3rem 2rem 6rem;max-width:900px;margin:0 auto" class="fade-in">
-<div class="contact-box">
-<h2 data-i18n-html="contact.title">¿Tienes un proyecto en mente? <strong>Hablemos</strong></h2>
-<p data-i18n="contact.desc">Estoy disponible para proyectos freelance, colaboraciones y oportunidades de trabajo remoto.</p>
-<div class="contact-links">
-<a href="mailto:naranjobarriosn@gmail.com" class="contact-btn contact-btn-primary" data-i18n="contact.email">Enviar email</a>
-<a href="https://www.linkedin.com/in/nicolas-naranjo-0b8720257/" target="_blank" rel="noopener" class="contact-btn contact-btn-ghost">LinkedIn</a>
-<a href="https://github.com/isnowyy" target="_blank" rel="noopener" class="contact-btn contact-btn-ghost">GitHub</a>
+<section class="sec" id="habilidades">
+<div class="wrap sec-grid">
+<h2 class="sec-title" data-i18n="skills.title">Con qué trabajo</h2>
+<div class="skills">
+<div class="skill">
+<h3 data-i18n="s1.name">Frontend y móvil</h3>
+<p data-i18n="s1.desc">Apps móviles e interfaces web responsivas y accesibles.</p>
+<ul><li>React Native</li><li>Expo</li><li>React</li><li>Next.js</li><li>TypeScript</li></ul>
+</div>
+<div class="skill">
+<h3 data-i18n="s2.name">Backend y datos</h3>
+<p data-i18n="s2.desc">APIs, bases de datos geoespaciales y lógica de negocio.</p>
+<ul><li>Node.js</li><li>Supabase</li><li>PostgreSQL</li><li>PostGIS</li><li>Python</li><li>FastAPI</li></ul>
+</div>
+<div class="skill">
+<h3 data-i18n="s3.name">Automatización y herramientas</h3>
+<p data-i18n="s3.desc">Automatizaciones, pagos, despliegue y control de versiones.</p>
+<ul><li>n8n</li><li>Wompi</li><li>Git y GitHub</li><li>Vercel</li><li>Figma</li></ul>
+</div>
 </div>
 </div>
 </section>
 
-<footer>
-<p>· Nicolás David Naranjo Barrios · 2026</p>
+<section class="sec" id="trayectoria">
+<div class="wrap sec-grid">
+<h2 class="sec-title" data-i18n="path.title">Trayectoria</h2>
+<div class="tracks">
+<div class="track">
+<h3 data-i18n="path.work">Experiencia</h3>
+<ol>
+<li class="now">
+<span class="when" data-i18n="w1.when">Jun 2026 – hoy</span>
+<div class="what" data-i18n="w1.what">Fundador y desarrollador</div>
+<div class="where">Wayrex</div>
+<p data-i18n="w1.desc">Diseño y desarrollo de la plataforma completa: app móvil, web, base de datos geoespacial y pagos.</p>
+</li>
+<li class="now">
+<span class="when" data-i18n="w2.when">Jun 2026 – hoy</span>
+<div class="what" data-i18n="w2.what">Desarrollador full stack freelance</div>
+<div class="where" data-i18n="w2.where">Proyectos para clientes</div>
+<p data-i18n="w2.desc">Apps web y móviles, automatizaciones con n8n e integraciones de pago a la medida de cada cliente.</p>
+</li>
+</ol>
+</div>
+<div class="track">
+<h3 data-i18n="path.edu">Formación</h3>
+<ol>
+<li class="now">
+<span class="when" data-i18n="e1.when">2026 – hoy</span>
+<div class="what" data-i18n="e1.what">Desarrollo de software</div>
+<div class="where">Campuslands</div>
+</li>
+<li class="now">
+<span class="when" data-i18n="e2.when">2023 – hoy</span>
+<div class="what" data-i18n="e2.what">Ingeniería Metalúrgica</div>
+<div class="where">Universidad Industrial de Santander (UIS)</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="contact" id="contacto">
+<div class="wrap">
+<p class="contact-q" data-i18n="contact.q">¿Tienes un proyecto en mente? Estoy disponible para trabajo freelance, colaboraciones y oportunidades remotas.</p>
+<a class="contact-mail" href="mailto:naranjobarriosn@gmail.com">naranjobarriosn<wbr/>@gmail.com</a>
+<div class="btns">
+<a href="https://www.linkedin.com/in/nicolas-naranjo-0b8720257/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+<a href="https://github.com/isnowyy" target="_blank" rel="noopener" class="btn">GitHub</a>
+</div>
+<div class="foot">
+<span>Nicolás David Naranjo Barrios</span>
+<span>Bucaramanga, 2026</span>
+</div>
+</div>
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
-}, {threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-document.querySelector('.hero').classList.add('visible');
+(() => {
+const svg = document.querySelector('.contours');
+const NS = 'http://www.w3.org/2000/svg';
+const cx = 560, cy = 400, levels = 16, peakX = 600, peakY = 360;
+const harm = [[2, .09, .4], [3, .06, 1.7], [5, .035, 2.9], [7, .02, .8]];
+for (let k = 0; k < levels; k++) {
+const t = k / (levels - 1);
+const base = 46 + t * 450;
+const ox = peakX + (cx - peakX) * t, oy = peakY + (cy - peakY) * t;
+let d = '';
+for (let i = 0; i <= 180; i++) {
+const a = i / 180 * Math.PI * 2;
+let r = 1;
+harm.forEach(([n, amp, ph]) => { r += amp * (0.6 + t) * Math.sin(n * a + ph + t * 1.3); });
+d += (i ? 'L' : 'M') + (ox + Math.cos(a) * base * r * 1.12).toFixed(1) + ' ' + (oy + Math.sin(a) * base * r * .82).toFixed(1);
+}
+const p = document.createElementNS(NS, 'path');
+p.setAttribute('d', d + 'Z');
+if (k % 5 === 4) p.setAttribute('class', 'index');
+svg.appendChild(p);
+p.style.setProperty('--len', Math.ceil(p.getTotalLength()));
+p.style.setProperty('--d', (k * 0.06).toFixed(2) + 's');
+}
+[['pin-ring', 14], ['pin', 6]].forEach(([cls, r]) => {
+const c = document.createElementNS(NS, 'circle');
+c.setAttribute('class', cls); c.setAttribute('cx', peakX); c.setAttribute('cy', peakY); c.setAttribute('r', r);
+svg.appendChild(c);
+});
+svg.classList.add('draw');
+})();
 
 const I18N = {
-es: {
-'meta.title':'Nicolás Naranjo | Desarrollador Full Stack',
-'nav.about':'Sobre mí','nav.skills':'Habilidades','nav.projects':'Proyectos','nav.contact':'Contacto'
-},
+es: { 'meta.title': 'Nicolás Naranjo | Desarrollador Full Stack' },
 en: {
-'meta.title':'Nicolás Naranjo | Full Stack Developer',
-'nav.about':'About','nav.skills':'Skills','nav.projects':'Projects','nav.contact':'Contact',
-'hero.tag':'Available for projects',
-'hero.title':'Hi, I\'m<br/><span>Nicolás Naranjo</span><br/>Full Stack Developer',
-'hero.desc':'I build web and mobile apps with React Native, Next.js, Node.js and Supabase. I\'m passionate about building products that solve real problems.',
-'hero.cta1':'View my projects','hero.cta2':'Get in touch',
-'about.label':'About me',
-'about.title':'Developer with a <strong>passion for detail</strong>',
-'about.p1':'I\'m a Full Stack developer and founder of Wayrex, a geolocation-based services platform. I build complete products, from the mobile app and web frontend to the database, payments and automations.',
-'about.p2':'I work with React Native (Expo), Next.js, TypeScript, Node.js and Supabase with PostGIS, plus automations with n8n and payment integration with Wompi.',
-'about.p3':'Based in Bucaramanga, Colombia 🇨🇴 — I work remotely with local and international clients.',
-'stat.1':'Years of development experience','stat.2':'Completed projects','stat.3':'Mobile app in active development',
-'skills.label':'Skills',
-'skills.title':'My <strong>tech stack</strong>',
-'skills.1.name':'Frontend & Mobile','skills.1.desc':'Modern, responsive and accessible mobile apps and web interfaces.',
-'skills.2.name':'Backend & Data','skills.2.desc':'APIs, geospatial databases and scalable business logic.',
-'skills.3.name':'Automation & Tools','skills.3.desc':'Automation, payments, deployment and a professional workflow.',
-'projects.label':'Projects',
-'projects.title':'What I\'ve <strong>built</strong>',
-'projects.1.desc':'Geolocation-based services platform that connects users with nearby businesses and providers. Includes an interactive map, roles (user, VIP and business) and integrated payments.',
-'projects.1.link':'View on GitHub →',
-'projects.2.name':'Land surveying with drones',
-'projects.2.desc':'System to measure land from drone flights: image capture, photogrammetric processing and area visualization on a web map.',
-'projects.3.desc':'Telegram bot to manage tutoring assignments, with automated n8n workflows, Google Sheets logging and availability alerts.',
-'projects.5.name':'Coffee roast level classifier',
-'projects.5.desc':'Image classifier that identifies the roast level of coffee beans in real time using the webcam. Model trained with Teachable Machine and run 100% in the browser with TensorFlow.js.',
-'projects.5.demo':'View demo →',
-'projects.5.link':'View code →',
-'contact.title':'Have a project in mind? <strong>Let\'s talk</strong>',
-'contact.desc':'I\'m available for freelance projects, collaborations and remote work opportunities.',
-'contact.email':'Send email'
+'meta.title': 'Nicolás Naranjo | Full Stack Developer',
+'nav.about': 'About', 'nav.projects': 'Projects', 'nav.path': 'Background', 'nav.contact': 'Contact',
+'hero.lede': 'Full stack developer. I build mobile and web apps with maps, payments and geospatial data, from the database all the way to the app store.',
+'hero.status': 'Available for freelance projects',
+'hero.cta1': 'See projects', 'hero.cta2': 'Email me',
+'about.title': 'About',
+'about.p1': 'I\'m the founder of Wayrex, a platform that connects people with nearby businesses and service providers based on their location.',
+'about.p2': 'I handle the whole product: the mobile app, the web frontend, the database, payments and automations. I work with React Native (Expo), Next.js, TypeScript, Node.js and Supabase with PostGIS, automate processes with n8n and integrate payments with Wompi.',
+'about.p3': 'I live in Bucaramanga, Colombia, and work remotely with clients in Colombia and abroad.',
+'fact.1': 'years building software', 'fact.2': 'completed projects', 'fact.3': 'mobile app in active development',
+'projects.title': 'Projects',
+'p1.kind': 'Mobile and web app',
+'p1.desc': 'Geolocation-based services platform that connects users with nearby businesses and providers. It has an interactive map, three roles (user, VIP and business) and built-in payments.',
+'p2.name': 'Land surveying with drones', 'p2.kind': 'Web system and drone',
+'p2.desc': 'Measures land from drone flights: it captures images, processes them with photogrammetry and shows the areas on a web map.',
+'p3.kind': 'Telegram bot',
+'p3.desc': 'Manages tutoring assignments with automated n8n workflows, logs every request in Google Sheets and sends alerts when slots open up.',
+'p4.name': 'Coffee roast classifier', 'p4.kind': 'Computer vision',
+'p4.desc': 'Identifies the roast level of coffee beans in real time using the camera. The model was trained with Teachable Machine and runs 100% in the browser with TensorFlow.js.',
+'link.github': 'View on GitHub', 'link.demo': 'Try the demo', 'link.code': 'View code',
+'skills.title': 'What I work with',
+'s1.name': 'Frontend and mobile', 's1.desc': 'Responsive, accessible mobile apps and web interfaces.',
+'s2.name': 'Backend and data', 's2.desc': 'APIs, geospatial databases and business logic.',
+'s3.name': 'Automation and tools', 's3.desc': 'Automations, payments, deployment and version control.',
+'path.title': 'Background', 'path.work': 'Experience', 'path.edu': 'Education',
+'w1.when': 'Jun 2026 – now', 'w1.what': 'Founder and developer',
+'w1.desc': 'Designing and building the whole platform: mobile app, web, geospatial database and payments.',
+'w2.when': 'Jun 2026 – now', 'w2.what': 'Freelance full stack developer', 'w2.where': 'Client projects',
+'w2.desc': 'Web and mobile apps, n8n automations and payment integrations tailored to each client.',
+'e1.when': '2026 – now', 'e1.what': 'Software development',
+'e2.when': '2023 – now', 'e2.what': 'Metallurgical Engineering',
+'contact.q': 'Have a project in mind? I\'m available for freelance work, collaborations and remote opportunities.'
 }
 };
 
@@ -372,17 +406,14 @@ if (!I18N[lang]) lang = 'es';
 const dict = I18N[lang];
 document.documentElement.lang = lang;
 document.title = dict['meta.title'];
+document.querySelector('.coords').innerHTML = 'Bucaramanga, Colombia &nbsp; 7.12° N, 73.12° ' + (lang === 'es' ? 'O' : 'W');
 document.querySelectorAll('[data-i18n]').forEach(el => { const t = dict[el.dataset.i18n]; if (t !== undefined) el.textContent = t; });
 document.querySelectorAll('[data-i18n-html]').forEach(el => { const t = dict[el.dataset.i18nHtml]; if (t !== undefined) el.innerHTML = t; });
-document.querySelectorAll('.lang-btn').forEach(b => {
-const on = b.dataset.lang === lang;
-b.classList.toggle('active', on);
-b.setAttribute('aria-pressed', on);
-});
+document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
 if (save) { try { localStorage.setItem('lang', lang); } catch (e) {} }
 }
 
-document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
 let initialLang = 'es';
 try { initialLang = localStorage.getItem('lang') || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) {}
